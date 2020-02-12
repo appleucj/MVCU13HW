@@ -1,0 +1,44 @@
+<img src="./hamburger.png" alt="hamburger">
+
+<h1>Eat-Da-Burger!</h1>
+
+<ul>
+  {{#each burgers}}
+  {{#unless sleepy}}
+  {{> burgers/burger-block sleep=true}}
+  {{/unless}}
+  {{/each}}
+</ul>
+
+
+
+<ul>
+  {{#each burgers}}
+  {{#if sleepy}}
+  {{> burgers/burger-block sleep=false}}
+  {{/if}}
+  {{/each}}
+</ul>
+
+<h2>Add a burger</h2>
+<form class="create-form">
+
+  <div class="form-group">
+    <label for="ca">Burger Name:</label>
+    <input type="text" id="ca" name="name">
+  </div>
+  {{!-- 
+  <div class="form-group">
+    <label for="slee">Devour?</label><br>
+    <input type="radio" value="1" checked> Devour!<br>
+    <input type="radio" value="0"> Devoured
+  </div> --}}
+
+  <button type="submit" id="add-button">Add Burger</button>
+  <script>
+    document.getElementById("add-button").addEventListener("click", function (event) {
+      event.preventDefault()
+      console.log("add click")
+    })
+  </script>
+</form>
