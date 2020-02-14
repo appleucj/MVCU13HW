@@ -4,8 +4,8 @@
 
 <ul>
   {{#each burgers}}
-  {{#unless sleepy}}
-  {{> burgers/burger-block sleep=true}}
+  {{#unless devour}}
+  {{> burgers/burger-block devour=true}}
   {{/unless}}
   {{/each}}
 </ul>
@@ -14,8 +14,8 @@
 
 <ul>
   {{#each burgers}}
-  {{#if sleepy}}
-  {{> burgers/burger-block sleep=false}}
+  {{#if devour}}
+  {{> burgers/burger-block devour=false}}
   {{/if}}
   {{/each}}
 </ul>
@@ -39,6 +39,21 @@
     document.getElementById("add-button").addEventListener("click", function (event) {
       event.preventDefault()
       console.log("add click")
+      // create burger object
+      var burger = {
+        name: $("#ca").val()
+      }
+      console.log(burger)
+      // send object in post request
+      $.ajax({
+        url: "/api/burgers",
+        type: "POST",
+        data: burger,
+      }).then(function () {
+        console.log("we have a burger!")
+        location.reload()
+      });
+
     })
   </script>
 </form>
